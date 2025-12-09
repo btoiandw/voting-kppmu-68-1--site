@@ -1,3 +1,94 @@
-<button onclick="window.open('https://lookerstudio.google.com/embed/reporting/9a7ccb4c-01d9-4987-992b-615fe0709448/page/9pTfF', '_system')">
-  เปิดใน Google Chrome
-</button>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กำลังเปิดรายงาน...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #4285F4; /* สีฟ้า Google */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        .instruction {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            font-size: 0.9em;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📊 กำลังเปิดรายงานผลคะแนน</h2>
+    <p>เนื่องจากข้อจำกัดในการแสดงผลกราฟใน LINE</p>
+    <p>โปรดคลิกปุ่มด้านล่างเพื่อเปิดรายงานในเบราว์เซอร์ Google Chrome หรือ Safari</p>
+    
+    <button class="btn" id="openButton">
+        คลิกเพื่อเปิดในเบราว์เซอร์
+    </button>
+    
+    <div class="instruction">
+        <p><strong>คำแนะนำเพิ่มเติม:</strong></p>
+        <p>หากกดปุ่มแล้วกราฟยังไม่แสดงผล: ให้มองหาไอคอน <strong>(⋮) หรือ (☰)</strong> ที่มุมบน/ล่างของหน้าจอโทรศัพท์ แล้วเลือก <strong>"เปิดในเบราว์เซอร์ภายนอก"</strong> หรือ <strong>"Open in Chrome"</strong></p>
+    </div>
+</div>
+
+<script>
+    const LOOKER_STUDIO_URL = 'https://lookerstudio.google.com/embed/reporting/9a7ccb4c-01d9-4987-992b-615fe0709448/page/9pTfF'; // *** ใส่ลิงก์ Looker Studio ที่นี่ ***
+    const openButton = document.getElementById('openButton');
+
+    // ฟังก์ชัน Deep Link เพื่อพยายามเปิด Chrome โดยตรง (ใช้ไม่ได้เสมอไป)
+    function attemptDeepLink() {
+        // ลองใช้ Chrome URL Scheme
+        // ถ้าเป็น Android หรือ iOS ที่มี Chrome ติดตั้งอยู่ อาจจะเปิด Chrome โดยตรงได้
+        window.location.href = `googlechrome://navigate?url=${encodeURIComponent(LOOKER_STUDIO_URL)}`;
+        
+        // กำหนดเวลาหน่วงเล็กน้อย ก่อน Redirect ไปยัง URL ปกติ
+        // ถ้า Chrome เปิดสำเร็จ ผู้ใช้จะออกจากหน้าจอนี้ แต่ถ้าไม่สำเร็จ จะ Redirect ไปตามปกติ
+        setTimeout(() => {
+             // Redirect ไป URL ปกติ หาก Deep Link ไม่สำเร็จ
+            window.location.href = LOOKER_STUDIO_URL;
+        }, 500); // 0.5 วินาที
+    }
+
+    // เมื่อคลิกปุ่ม
+    openButton.addEventListener('click', () => {
+        attemptDeepLink();
+    });
+
+    // หากต้องการให้พยายาม Deep Link อัตโนมัติเมื่อหน้าโหลด (อาจถูกบล็อกโดย LINE)
+    // window.onload = attemptDeepLink; 
+</script>
+
+</body>
+</html>
