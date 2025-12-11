@@ -1,3 +1,76 @@
-<button onclick="window.open('https://lookerstudio.google.com/embed/reporting/3d0bc2b6-a249-4ebd-855e-fcff60b31fc3/page/6mViF', '_system')">
-  เปิดใน Google Chrome
-</button>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>กำลังเปิดรายงาน...</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; line-height: 1.5; background-color: #f4f4f9; }
+        .box { max-width: 450px; margin: 0 auto; padding: 25px; border: 1px solid #ddd; border-radius: 12px; background-color: #ffffff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+        h1 { color: #333; font-size: 1.8em; margin-bottom: 10px; }
+        p { color: #555; margin-bottom: 15px; }
+        .button {
+            display: block; /* เปลี่ยนเป็น block เพื่อให้ปุ่มเต็มพื้นที่ box */
+            background-color: #1a73e8; /* สีน้ำเงินสไตล์ Google/Looker */
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0c61cf;
+        }
+        hr { margin: 30px 0; border: 0; border-top: 1px solid #eee; }
+        .tip {
+            font-size: 0.9em; 
+            color: #666; 
+            background-color: #fff3cd; /* สีเหลืองอ่อนสำหรับข้อความเตือน/เคล็ดลับ */
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            text-align: left;
+            border-radius: 4px;
+        }
+        .tip strong {
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>📊 กำลังเปิดรายงานผลคะแนน</h1>
+        <p>รายงานของคุณพร้อมแล้ว กรุณาคลิกปุ่มด้านล่างเพื่อเปิดรายงานในเบราว์เซอร์ภายนอก (Chrome, Safari, หรือ Edge)</p>
+        
+        <a id="fallback-link" class="button" href="YOUR_LOOKER_STUDIO_URL_HERE" target="_blank">
+            คลิกเพื่อเปิดรายงานโดยตรง
+        </a>
+        
+        <hr>
+
+        <div class="tip">
+            <strong>💡 เคล็ดลับสำคัญสำหรับ LINE / Facebook:</strong><br>
+            * หากคลิกปุ่มด้านบนแล้ว **ยังเปิดในแอปเดิมอยู่** และรายงานแสดงผลไม่สมบูรณ์
+            * ให้มองหา **จุด 3 จุด (⋮)** หรือ **เมนู (☰)** ที่มุมบนหรือมุมล่างขวาของหน้าจอ
+            * แล้วเลือก **"เปิดในเบราว์เซอร์ภายนอก"** (Open in external browser) เพื่อดูรายงานเต็มรูปแบบ
+        </div>
+    </div>
+
+    <script>
+        // กำหนด URL ของ Looker Studio
+        const lookerStudioUrl = 'YOUR_LOOKER_STUDIO_URL_HERE';
+        
+        // ตรวจสอบและอัปเดต href ของปุ่มให้แน่ใจว่าถูกต้อง
+        const fallbackLink = document.getElementById('fallback-link');
+        if (fallbackLink) {
+            fallbackLink.href = lookerStudioUrl;
+        }
+        
+        // *** โค้ดที่พยายามเปิดอัตโนมัติ (window.open หรือ setTimeout) ถูกลบออกแล้ว ***
+        // *** เพื่อหลีกเลี่ยงการถูกบล็อกโดย In-App Browser ***
+    </script>
+</body>
+</html>
